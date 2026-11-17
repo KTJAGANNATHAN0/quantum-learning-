@@ -3,6 +3,9 @@
 > **AI-Based Interactive Quantum Algorithm Learning Platform**  
 > An educational platform featuring interactive quantum circuit builders, 3D Bloch sphere visualizations, algorithmic walk-throughs, and an AI-powered Quantum Tutor.
 
+🌐 **Live Demo on GitHub Pages**:  
+👉 **[https://KTJAGANNATHAN0.github.io/quantum-learning-/](https://KTJAGANNATHAN0.github.io/quantum-learning-/)**
+
 ---
 
 ## 🌟 Key Features
