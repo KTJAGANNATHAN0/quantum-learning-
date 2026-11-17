@@ -1,0 +1,31 @@
+# Environment variables
+.env
+*.env
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+.venv/
+env/
+dist/
+build/
+*.egg-info/
+
+# Node / Frontend
+node_modules/
+frontend/dist/
+frontend/node_modules/
+dist/
+
+# Binaries & Executables
+*.exe
+*.dll
+
+# IDE and System files
+.vscode/
+.DS_Store
+Thumbs.db

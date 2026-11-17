@@ -1,0 +1,318 @@
+/* ==========================================================================
+   QUANTUM LAB // ARCHIVAL TECHNICAL SPECIFICATION DESIGN SYSTEM
+   THEME: SERIOUS TECHNICAL DOCUMENTATION (CRIMSON LAB RED & ALABASTER WHITE)
+   ARCHITECTURE: DOUBLE-BEZEL HARDWARE CONTAINER + FLOATING ISLAND HUD
+   ========================================================================== */
+
+:root {
+  /* Surface & Background Primitives */
+  --bg-canvas: #F8FAFC;
+  --bg-paper: #FFFFFF;
+  --bg-subtle: #F1F5F9;
+  --bg-bezel: #FAFAFA;
+  --bg-muted: #F8FAFC;
+  --bg-hover: #F1F5F9;
+
+  /* Serious Technical Red & Crimson Palette */
+  --red-600: #DC2626;        /* Primary Scientific Crimson */
+  --red-700: #B91C1C;        /* Deep Lab Red */
+  --red-800: #991B1B;        /* Archival Crimson */
+  --red-500: #EF4444;        /* Live Indicator Red */
+  --red-100: #FEE2E2;        /* Subtle Red Wash */
+  --red-50: #FEF2F2;         /* Paper Red Tint */
+  --red-border: #FCA5A5;     /* Micro Red Highlight */
+
+  /* Technical Ink & Graphite Typography */
+  --ink-primary: #090D16;    /* Deep Carbon Slate */
+  --ink-secondary: #1E293B;  /* Technical Ink */
+  --ink-muted: #475569;      /* Explanatory Slate */
+  --ink-dim: #64748B;        /* Metadata & Timestamps */
+  --ink-subtle: #94A3B8;     /* Inactive/Grid Ticks */
+
+  /* Double-Bezel Hardware Architecture Tokens */
+  --border-chassis: #E2E8F0;
+  --border-chassis-hover: #CBD5E1;
+  --border-bezel: #CBD5E1;
+  --border-bezel-inner: #E2E8F0;
+  --border-hairline: rgba(15, 23, 42, 0.08);
+
+  /* Shadows & Elevation */
+  --shadow-chassis: 0 1px 3px rgba(15, 23, 42, 0.04), 0 6px 24px -4px rgba(15, 23, 42, 0.06);
+  --shadow-chassis-hover: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 12px 32px -4px rgba(15, 23, 42, 0.1);
+  --shadow-hud: 0 10px 38px -10px rgba(15, 23, 42, 0.12), 0 2px 8px -2px rgba(15, 23, 42, 0.08);
+  --shadow-red-sm: 0 2px 10px rgba(220, 38, 38, 0.2);
+  --shadow-red-hover: 0 6px 20px rgba(220, 38, 38, 0.35);
+
+  /* Spring Physics Easings */
+  --spring-haptic: cubic-bezier(0.16, 1, 0.3, 1);
+  --spring-smooth: cubic-bezier(0.32, 0.72, 0, 1);
+  --transition-fast: 0.18s var(--spring-haptic);
+  --transition-smooth: 0.28s var(--spring-smooth);
+
+  /* Anti-Generic Typography Stacks */
+  --font-display: 'Orbitron', -apple-system, sans-serif;
+  --font-editorial: 'Syne', -apple-system, sans-serif;
+  --font-hud: 'Space Grotesk', -apple-system, sans-serif;
+  --font-body: 'Inter', -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Backward Compatibility Aliases for components */
+  --bg-dark: #F8FAFC;
+  --bg-surface: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-glass: rgba(255, 255, 255, 0.95);
+  --bg-glass-hover: #F8FAFC;
+  --border-glass: #E2E8F0;
+  --border-glass-hover: #CBD5E1;
+  --primary-cyan: #DC2626;
+  --primary-violet: #991B1B;
+  --primary-indigo: #B91C1C;
+  --primary-pink: #EF4444;
+  --primary-emerald: #15803D;
+  --primary-amber: #B45309;
+  --text-main: #090D16;
+  --text-muted: #475569;
+  --text-dim: #64748B;
+  --font-heading: 'Space Grotesk', -apple-system, sans-serif;
+
+  font-family: var(--font-body);
+  color-scheme: light;
+  background-color: var(--bg-canvas);
+  color: var(--ink-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--bg-canvas);
+  background-image: 
+    radial-gradient(circle at 1px 1px, rgba(148, 163, 184, 0.25) 1px, transparent 0);
+  background-size: 24px 24px;
+  background-attachment: fixed;
+  color: var(--ink-primary);
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-hud);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--ink-primary);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   DOUBLE-BEZEL HARDWARE CONTAINER SYSTEM
+   ========================================================================== */
+.outer-chassis,
+.glass-panel {
+  background: var(--bg-paper);
+  border: 1px solid var(--border-chassis);
+  border-radius: 12px;
+  box-shadow: var(--shadow-chassis);
+  position: relative;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+}
+
+.outer-chassis:hover,
+.glass-panel:hover {
+  border-color: var(--border-chassis-hover);
+  box-shadow: var(--shadow-chassis-hover);
+}
+
+.glass-panel-glow {
+  background: var(--bg-paper);
+  border: 1px solid var(--red-border);
+  box-shadow: 0 0 0 1px rgba(220, 38, 38, 0.15), var(--shadow-chassis);
+  border-radius: 12px;
+}
+
+.inner-bezel {
+  background: var(--bg-bezel);
+  border: 1px solid var(--border-bezel-inner);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+/* Micro Chamfer Accent Lines */
+.chamfer-tag {
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 0 100%);
+}
+
+/* ==========================================================================
+   SERIOUS DOCUMENTING & ARCHIVAL DOSSIER UTILITIES
+   ========================================================================== */
+.doc-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--red-700);
+  background: var(--red-50);
+  border: 1px solid var(--red-border);
+  border-radius: 4px;
+}
+
+.doc-metadata-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 14px;
+  background: var(--bg-subtle);
+  border-bottom: 1px solid var(--border-chassis);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-dim);
+  letter-spacing: 0.04em;
+}
+
+.telemetry-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #FFFFFF;
+  border: 1px solid var(--border-chassis);
+  border-radius: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--ink-secondary);
+}
+
+/* ==========================================================================
+   BUTTONS & TACTILE CONTROLS (HIGH CONTRAST RED & INK)
+   ========================================================================== */
+.btn-primary {
+  background: var(--red-600);
+  color: #FFFFFF;
+  font-family: var(--font-hud);
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--red-700);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-red-sm);
+}
+
+.btn-primary:hover {
+  background: var(--red-700);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-red-hover);
+}
+
+.btn-primary:active {
+  transform: translateY(1px);
+}
+
+.btn-secondary {
+  background: #FFFFFF;
+  color: var(--ink-primary);
+  border: 1px solid var(--border-chassis);
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-hud);
+  font-weight: 600;
+  font-size: 0.82rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+}
+
+.btn-secondary:hover {
+  background: var(--bg-subtle);
+  border-color: var(--red-border);
+  color: var(--red-700);
+}
+
+.btn-secondary:active {
+  background: var(--bg-hover);
+}
+
+/* Scientific Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-beginner {
+  background: #DCFCE7;
+  color: #15803D;
+  border: 1px solid #86EFAC;
+}
+
+.badge-intermediate {
+  background: #FEF3C7;
+  color: #B45309;
+  border: 1px solid #FCD34D;
+}
+
+.badge-advanced {
+  background: var(--red-100);
+  color: var(--red-700);
+  border: 1px solid var(--red-border);
+}
+
+/* Custom Architectural Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-subtle);
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Precision Pulse Animation */
+@keyframes red-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(220, 38, 38, 0);
+  }
+}
+
+.live-beacon {
+  width: 8px;
+  height: 8px;
+  background: var(--red-600);
+  border-radius: 50%;
+  animation: red-pulse 2s infinite var(--spring-smooth);
+}

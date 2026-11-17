@@ -1,0 +1,20 @@
+[constraints]
+max_cycles = 0
+max_coupling = "B"
+max_cc = 25
+no_god_files = true
+
+[[layers]]
+name = "api"
+paths = ["backend/app/api/*"]
+order = 0
+
+[[layers]]
+name = "services"
+paths = ["backend/app/services/*"]
+order = 1
+
+[[layers]]
+name = "adapters"
+paths = ["backend/app/adapters/*"]
+order = 2
